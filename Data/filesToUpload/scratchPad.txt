@@ -1,0 +1,4 @@
+log.info(n.toString());
+String pst = (vars.get("searchTerm")).substring(0,n);
+vars.put("partialSearchTerm",pst);
+log.info(vars.get("searchTerm")+" "+vars.get("loopCount")+ " "+vars.get("partialSearchTerm"));
