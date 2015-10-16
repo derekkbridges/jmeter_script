@@ -149,18 +149,7 @@
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load data for the Form Post" enabled="true">
         <stringProp name="filename">${dataFilePath}formData.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
-        <stringProp name="variableNames">email,CreditCard,Passport</stringProp>
-        <stringProp name="delimiter">,</stringProp>
-        <boolProp name="quotedData">false</boolProp>
-        <boolProp name="recycle">true</boolProp>
-        <boolProp name="stopThread">false</boolProp>
-        <stringProp name="shareMode">shareMode.all</stringProp>
-      </CSVDataSet>
-      <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load site Classification file" enabled="false">
-        <stringProp name="filename">${dataFilePath}questionableSites.csv</stringProp>
-        <stringProp name="fileEncoding"></stringProp>
-        <stringProp name="variableNames">baseUrl</stringProp>
+        <stringProp name="variableNames">email,CreditCard,Passport,password</stringProp>
         <stringProp name="delimiter">,</stringProp>
         <boolProp name="quotedData">false</boolProp>
         <boolProp name="recycle">true</boolProp>
@@ -280,7 +269,7 @@
             </HtmlExtractor>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">int matchTotal = Integer.parseInt(vars.get(&quot;allLinkUrls_matchNr&quot;));
@@ -353,7 +342,7 @@ vars.put(&quot;nextLink&quot;,nextLink);</stringProp>
             </BeanShellPostProcessor>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -371,13 +360,6 @@ vars.put(&quot;nextLink&quot;,nextLink);</stringProp>
             <ResultAction guiclass="ResultActionGui" testclass="ResultAction" testname="Stop if domain is dead" enabled="true">
               <intProp name="OnError.action">4</intProp>
             </ResultAction>
-            <hashTree/>
-            <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="false">
-              <boolProp name="displayJMeterProperties">false</boolProp>
-              <boolProp name="displayJMeterVariables">true</boolProp>
-              <boolProp name="displaySamplerProperties">true</boolProp>
-              <boolProp name="displaySystemProperties">false</boolProp>
-            </DebugPostProcessor>
             <hashTree/>
           </hashTree>
           <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -465,7 +447,7 @@ vars.put(&quot;nextLink&quot;,vars.get(&quot;nextLink&quot;).replace(&quot;/$&qu
               </HtmlExtractor>
               <hashTree/>
               <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
-                <boolProp name="resetInterpreter">false</boolProp>
+                <boolProp name="resetInterpreter">true</boolProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="script">int matchTotal = Integer.parseInt(vars.get(&quot;allLinkUrls_matchNr&quot;));
@@ -561,7 +543,7 @@ log.info(&quot;nextLink set to :&quot; + vars.get(&quot;nextLink&quot;));</strin
               </ResponseAssertion>
               <hashTree/>
               <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-                <boolProp name="resetInterpreter">false</boolProp>
+                <boolProp name="resetInterpreter">true</boolProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -704,7 +686,7 @@ vars.remove(&quot;relativeLink&quot;);</stringProp>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Parse relativeLink" enabled="true">
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="script">if(vars.getObject(&quot;nextLink&quot;) == null){
 	if(vars.getObject(&quot;relativeLink&quot;) != null){
 		vars.put(&quot;nextLink&quot;,vars.get(&quot;baseUrl&quot;) + &quot;/&quot; + vars.get(&quot;relativeLink&quot;));
@@ -725,7 +707,7 @@ vars.remove(&quot;relativeLink&quot;);</stringProp>
             </ResponseAssertion>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -776,7 +758,7 @@ vars.remove(&quot;relativeLink&quot;);</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
               <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Clear relativeLink" enabled="true">
-                <boolProp name="resetInterpreter">false</boolProp>
+                <boolProp name="resetInterpreter">true</boolProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="script">vars.remove(&quot;relativeLink&quot;);
@@ -854,7 +836,7 @@ vars.put(&quot;nextLink&quot;,vars.get(&quot;nextLink&quot;).replace(&quot;/$&qu
               </ResponseAssertion>
               <hashTree/>
               <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-                <boolProp name="resetInterpreter">false</boolProp>
+                <boolProp name="resetInterpreter">true</boolProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -943,27 +925,6 @@ vars.put(&quot;nextLink&quot;,vars.get(&quot;nextLink&quot;).replace(&quot;/$&qu
             <stringProp name="RandomTimer.range">${thinkTimePlusMinus}</stringProp>
           </GaussianRandomTimer>
           <hashTree/>
-          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Override Proxy Settings" enabled="false">
-            <stringProp name="filename"></stringProp>
-            <stringProp name="parameters"></stringProp>
-            <boolProp name="resetInterpreter">false</boolProp>
-            <stringProp name="script">int rand = Integer.parseInt(vars.get(&quot;randomPercentage&quot;));
-int percDirect = Integer.parseInt(vars.get(&quot;percentageDirectTraffic&quot;));
-
-if(rand &lt; percDirect){
-	vars.put(&quot;proxyOrDirectFlag&quot;,&quot;D&quot;);
-	vars.put(&quot;proxyServer&quot;,&quot;&quot;);
-	vars.put(&quot;proxyPort&quot;,&quot;&quot;);
-	vars.put(&quot;proxyUser&quot;,&quot;&quot;);
-	vars.put(&quot;proxyPassword&quot;,&quot;&quot;);
-}
-else
-{
-	vars.put(&quot;proxyOrDirectFlag&quot;,&quot;P&quot;);
-}
-</stringProp>
-          </BeanShellPreProcessor>
-          <hashTree/>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="http://www.google.com/ncr" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Argument List" enabled="true">
               <collectionProp name="Arguments.arguments"/>
@@ -988,7 +949,7 @@ else
             <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Override Proxy Settings" enabled="true">
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="script">int rand = Integer.parseInt(vars.get(&quot;randomPercentage&quot;));
 int percDirect = Integer.parseInt(vars.get(&quot;percentageDirectTraffic&quot;));
 
@@ -1007,7 +968,7 @@ else
             </BeanShellPreProcessor>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -1196,7 +1157,7 @@ else
             </RegexExtractor>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -1245,7 +1206,7 @@ else
             </RegexExtractor>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -1286,7 +1247,7 @@ else
             <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Override Proxy Settings &amp; clear nextLink" enabled="true">
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="script">int rand = Integer.parseInt(vars.get(&quot;randomPercentage&quot;));
 int percDirect = Integer.parseInt(vars.get(&quot;percentageDirectTraffic&quot;));
 
@@ -1305,13 +1266,6 @@ else
 vars.remove(&quot;nextLink&quot;);</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Clear nextLink" enabled="false">
-              <boolProp name="resetInterpreter">false</boolProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="script">vars.remove(&quot;nextLink&quot;);</stringProp>
-            </BeanShellPreProcessor>
-            <hashTree/>
             <HtmlExtractor guiclass="HtmlExtractorGui" testclass="HtmlExtractor" testname="CSS/JQuery Extractor" enabled="true">
               <stringProp name="HtmlExtractor.refname">allLinkUrls</stringProp>
               <stringProp name="HtmlExtractor.expr">a</stringProp>
@@ -1322,7 +1276,7 @@ vars.remove(&quot;nextLink&quot;);</stringProp>
             </HtmlExtractor>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">int matchTotal = Integer.parseInt(vars.get(&quot;allLinkUrls_matchNr&quot;));
@@ -1354,47 +1308,6 @@ nextLink=nextLink.replaceFirst(&quot;http://&quot;,&quot;&quot;);
 vars.put(&quot;nextLink&quot;,nextLink);</stringProp>
             </BeanShellPostProcessor>
             <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (full http)" enabled="false">
-              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-              <stringProp name="RegexExtractor.refname">nextLink</stringProp>
-              <stringProp name="RegexExtractor.regex">&lt;a href=&quot;http://([^&quot;]+)&quot;</stringProp>
-              <stringProp name="RegexExtractor.template">$1$</stringProp>
-              <stringProp name="RegexExtractor.default"></stringProp>
-              <stringProp name="RegexExtractor.match_number">0</stringProp>
-            </RegexExtractor>
-            <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (//)" enabled="false">
-              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-              <stringProp name="RegexExtractor.refname">nextLink</stringProp>
-              <stringProp name="RegexExtractor.regex">&lt;a href=&quot;//([^&quot;]+)&quot;</stringProp>
-              <stringProp name="RegexExtractor.template">$1$</stringProp>
-              <stringProp name="RegexExtractor.default"></stringProp>
-              <stringProp name="RegexExtractor.match_number">0</stringProp>
-            </RegexExtractor>
-            <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (relative)" enabled="false">
-              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-              <stringProp name="RegexExtractor.refname">relativeLink</stringProp>
-              <stringProp name="RegexExtractor.regex">&lt;a href=&quot;/([^&quot;/]+)&quot;</stringProp>
-              <stringProp name="RegexExtractor.template">$1$</stringProp>
-              <stringProp name="RegexExtractor.default"></stringProp>
-              <stringProp name="RegexExtractor.match_number">0</stringProp>
-            </RegexExtractor>
-            <hashTree/>
-            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Parse relativeLink" enabled="false">
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <boolProp name="resetInterpreter">false</boolProp>
-              <stringProp name="script">if(vars.getObject(&quot;nextLink&quot;) == null){
-	if(vars.getObject(&quot;relativeLink&quot;) != null){
-		vars.put(&quot;nextLink&quot;,vars.get(&quot;baseUrl&quot;) + &quot;/&quot; + vars.get(&quot;relativeLink&quot;));
-	}
-	else {
-		vars.put(&quot;nextLink&quot;,vars.get(&quot;baseUrl&quot;));
-	}
-}</stringProp>
-            </BeanShellPostProcessor>
-            <hashTree/>
             <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="-1239234756">403|20[0-9]|30[0-9]</stringProp>
@@ -1405,7 +1318,7 @@ vars.put(&quot;nextLink&quot;,nextLink);</stringProp>
             </ResponseAssertion>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -1423,13 +1336,6 @@ vars.put(&quot;nextLink&quot;,nextLink);</stringProp>
             <ResultAction guiclass="ResultActionGui" testclass="ResultAction" testname="Stop if domain is dead" enabled="true">
               <intProp name="OnError.action">4</intProp>
             </ResultAction>
-            <hashTree/>
-            <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="false">
-              <boolProp name="displayJMeterProperties">false</boolProp>
-              <boolProp name="displayJMeterVariables">true</boolProp>
-              <boolProp name="displaySamplerProperties">true</boolProp>
-              <boolProp name="displaySystemProperties">false</boolProp>
-            </DebugPostProcessor>
             <hashTree/>
           </hashTree>
           <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -1517,7 +1423,7 @@ vars.put(&quot;nextLink&quot;,vars.get(&quot;nextLink&quot;).replace(&quot;/$&qu
               </HtmlExtractor>
               <hashTree/>
               <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
-                <boolProp name="resetInterpreter">false</boolProp>
+                <boolProp name="resetInterpreter">true</boolProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="script">int matchTotal = Integer.parseInt(vars.get(&quot;allLinkUrls_matchNr&quot;));
@@ -1630,268 +1536,6 @@ log.info(&quot;nextLink set to :&quot; + vars.get(&quot;nextLink&quot;));</strin
               <hashTree/>
             </hashTree>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Http Req Sampler ${baseUrl}" enabled="false">
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Argument List" enabled="true">
-              <collectionProp name="Arguments.arguments"/>
-            </elementProp>
-            <stringProp name="HTTPSampler.domain">${baseUrl}</stringProp>
-            <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-            <stringProp name="HTTPSampler.response_timeout"></stringProp>
-            <stringProp name="HTTPSampler.protocol">http</stringProp>
-            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path"></stringProp>
-            <stringProp name="HTTPSampler.method">GET</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <boolProp name="HTTPSampler.image_parser">true</boolProp>
-            <boolProp name="HTTPSampler.monitor">false</boolProp>
-            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          </HTTPSamplerProxy>
-          <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Override Proxy Settings" enabled="true">
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <boolProp name="resetInterpreter">false</boolProp>
-              <stringProp name="script">int rand = Integer.parseInt(vars.get(&quot;randomPercentage&quot;));
-int percDirect = Integer.parseInt(vars.get(&quot;percentageDirectTraffic&quot;));
-
-if(rand &lt; percDirect){
-	vars.put(&quot;proxyOrDirectFlag&quot;,&quot;D&quot;);
-	vars.put(&quot;proxyServer&quot;,&quot;&quot;);
-	vars.put(&quot;proxyPort&quot;,&quot;&quot;);
-	vars.put(&quot;proxyUser&quot;,&quot;&quot;);
-	vars.put(&quot;proxyPassword&quot;,&quot;&quot;);
-}
-else
-{
-	vars.put(&quot;proxyOrDirectFlag&quot;,&quot;P&quot;);
-}
-</stringProp>
-            </BeanShellPreProcessor>
-            <hashTree/>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Clear nextLink &amp; relativeLink" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="script">vars.remove(&quot;nextLink&quot;);
-vars.remove(&quot;relativeLink&quot;);
-vars.put(&quot;baseUrl&quot;,vars.get(&quot;baseUrl&quot;).replaceAll(&quot;/$&quot;,&quot;&quot;));
-</stringProp>
-            </BeanShellPreProcessor>
-            <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (full http)" enabled="true">
-              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-              <stringProp name="RegexExtractor.refname">nextLink</stringProp>
-              <stringProp name="RegexExtractor.regex">&lt;a href=&quot;http://([^&quot;]+)&quot;</stringProp>
-              <stringProp name="RegexExtractor.template">$1$</stringProp>
-              <stringProp name="RegexExtractor.default"></stringProp>
-              <stringProp name="RegexExtractor.match_number">0</stringProp>
-            </RegexExtractor>
-            <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (//)" enabled="true">
-              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-              <stringProp name="RegexExtractor.refname">nextLink</stringProp>
-              <stringProp name="RegexExtractor.regex">&lt;a href=&quot;//([^&quot;]+)&quot;</stringProp>
-              <stringProp name="RegexExtractor.template">$1$</stringProp>
-              <stringProp name="RegexExtractor.default"></stringProp>
-              <stringProp name="RegexExtractor.match_number">0</stringProp>
-            </RegexExtractor>
-            <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (relative)" enabled="true">
-              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-              <stringProp name="RegexExtractor.refname">relativeLink</stringProp>
-              <stringProp name="RegexExtractor.regex">&lt;a href=&quot;/([^&quot;/]+)&quot;</stringProp>
-              <stringProp name="RegexExtractor.template">$1$</stringProp>
-              <stringProp name="RegexExtractor.default"></stringProp>
-              <stringProp name="RegexExtractor.match_number">0</stringProp>
-            </RegexExtractor>
-            <hashTree/>
-            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Parse relativeLink" enabled="true">
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <boolProp name="resetInterpreter">false</boolProp>
-              <stringProp name="script">if(vars.getObject(&quot;nextLink&quot;) == null){
-	if(vars.getObject(&quot;relativeLink&quot;) != null){
-		vars.put(&quot;nextLink&quot;,vars.get(&quot;baseUrl&quot;) + &quot;/&quot; + vars.get(&quot;relativeLink&quot;));
-	}
-	else {
-		vars.put(&quot;nextLink&quot;,vars.get(&quot;baseUrl&quot;));
-	}
-}</stringProp>
-            </BeanShellPostProcessor>
-            <hashTree/>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
-              <collectionProp name="Asserion.test_strings">
-                <stringProp name="-1239234756">403|20[0-9]|30[0-9]</stringProp>
-              </collectionProp>
-              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-              <boolProp name="Assertion.assume_success">true</boolProp>
-              <intProp name="Assertion.test_type">1</intProp>
-            </ResponseAssertion>
-            <hashTree/>
-            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
-	SampleResult = prev;
-	if(prev.getResponseCode().equals(&quot;403&quot;))
-	{
-		SampleResult.setSampleLabel(&quot;[&quot; + vars.get(&quot;proxyOrDirectFlag&quot;) + &quot;]_UA-3_http-BLOCKED&quot;);
-	}
-	else
-	{
-		SampleResult.setSampleLabel(&quot;[&quot; + vars.get(&quot;proxyOrDirectFlag&quot;) + &quot;]_UA-3_http&quot;);
-	}
-}</stringProp>
-            </BeanShellPostProcessor>
-            <hashTree/>
-            <ResultAction guiclass="ResultActionGui" testclass="ResultAction" testname="Stop if domain is dead" enabled="true">
-              <intProp name="OnError.action">4</intProp>
-            </ResultAction>
-            <hashTree/>
-          </hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="false">
-            <boolProp name="LoopController.continue_forever">true</boolProp>
-            <stringProp name="LoopController.loops">${numberOfTimesToSpider}</stringProp>
-          </LoopController>
-          <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Http Req Sampler - ${nextLink}" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-                <collectionProp name="Arguments.arguments"/>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain">${nextLink}</stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path"></stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.image_parser">true</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Clear relativeLink" enabled="true">
-                <boolProp name="resetInterpreter">false</boolProp>
-                <stringProp name="parameters"></stringProp>
-                <stringProp name="filename"></stringProp>
-                <stringProp name="script">vars.remove(&quot;relativeLink&quot;);
-vars.put(&quot;nextLink&quot;,vars.get(&quot;nextLink&quot;).replace(&quot;/$&quot;,&quot;&quot;));
-</stringProp>
-              </BeanShellPreProcessor>
-              <hashTree/>
-              <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="true">
-                <boolProp name="displayJMeterProperties">false</boolProp>
-                <boolProp name="displayJMeterVariables">true</boolProp>
-                <boolProp name="displaySamplerProperties">true</boolProp>
-                <boolProp name="displaySystemProperties">false</boolProp>
-              </DebugPostProcessor>
-              <hashTree/>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (full http)" enabled="true">
-                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                <stringProp name="RegexExtractor.refname">nextLink</stringProp>
-                <stringProp name="RegexExtractor.regex">&lt;a href=&quot;http://([^&quot;]+)&quot;</stringProp>
-                <stringProp name="RegexExtractor.template">$1$</stringProp>
-                <stringProp name="RegexExtractor.default"></stringProp>
-                <stringProp name="RegexExtractor.match_number">0</stringProp>
-              </RegexExtractor>
-              <hashTree/>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (//)" enabled="true">
-                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                <stringProp name="RegexExtractor.refname">nextLink</stringProp>
-                <stringProp name="RegexExtractor.regex">&lt;a href=&quot;//([^&quot;]+)&quot;</stringProp>
-                <stringProp name="RegexExtractor.template">$1$</stringProp>
-                <stringProp name="RegexExtractor.default"></stringProp>
-                <stringProp name="RegexExtractor.match_number">0</stringProp>
-              </RegexExtractor>
-              <hashTree/>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (relative)" enabled="true">
-                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                <stringProp name="RegexExtractor.refname">relativeLink</stringProp>
-                <stringProp name="RegexExtractor.regex">&lt;a href=&quot;/([^&quot;/]+)&quot;</stringProp>
-                <stringProp name="RegexExtractor.template">$1$</stringProp>
-                <stringProp name="RegexExtractor.default"></stringProp>
-                <stringProp name="RegexExtractor.match_number">0</stringProp>
-              </RegexExtractor>
-              <hashTree/>
-              <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Parse relativeLink" enabled="true">
-                <stringProp name="filename"></stringProp>
-                <stringProp name="parameters"></stringProp>
-                <boolProp name="resetInterpreter">false</boolProp>
-                <stringProp name="script">if(vars.getObject(&quot;nextLink&quot;) == null){
-	if(vars.getObject(&quot;relativeLink&quot;) != null){
-		vars.put(&quot;nextLink&quot;,vars.get(&quot;baseUrl&quot;) + &quot;/&quot; + vars.get(&quot;relativeLink&quot;));
-		
-	}
-	else {
-		vars.put(&quot;nextLink&quot;,vars.get(&quot;baseUrl&quot;));
-		
-	}
-}</stringProp>
-              </BeanShellPostProcessor>
-              <hashTree/>
-              <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Check if prev = next" enabled="true">
-                <stringProp name="filename"></stringProp>
-                <stringProp name="parameters"></stringProp>
-                <boolProp name="resetInterpreter">false</boolProp>
-                <stringProp name="script">if(prev.getUrlAsString().toLowerCase().contains(vars.get(&quot;nextLink&quot;).toLowerCase())){
-	
-	vars.remove(&quot;nextLink&quot;);
-	vars.put(&quot;nextLink&quot;,vars.get(&quot;baseUrl&quot;));
-}
-</stringProp>
-              </BeanShellPostProcessor>
-              <hashTree/>
-              <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Reset to BaseUrl if fail" enabled="true">
-                <stringProp name="filename"></stringProp>
-                <stringProp name="parameters"></stringProp>
-                <boolProp name="resetInterpreter">false</boolProp>
-                <stringProp name="script">if(!prev.isSuccessful()){
-		
-	vars.remove(&quot;nextLink&quot;);
-	vars.put(&quot;nextLink&quot;,vars.get(&quot;baseUrl&quot;));
-	
-}
-</stringProp>
-              </BeanShellPostProcessor>
-              <hashTree/>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="-1239234756">403|20[0-9]|30[0-9]</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-                <boolProp name="Assertion.assume_success">true</boolProp>
-                <intProp name="Assertion.test_type">1</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-              <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-                <boolProp name="resetInterpreter">false</boolProp>
-                <stringProp name="parameters"></stringProp>
-                <stringProp name="filename"></stringProp>
-                <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
-	SampleResult = prev;
-	if(prev.getResponseCode().equals(&quot;403&quot;))
-	{
-		SampleResult.setSampleLabel(&quot;[&quot; + vars.get(&quot;proxyOrDirectFlag&quot;) + &quot;]_UA-3_http-BLOCKED&quot;);
-	}
-	else
-	{
-		SampleResult.setSampleLabel(&quot;[&quot; + vars.get(&quot;proxyOrDirectFlag&quot;) + &quot;]_UA-3_http&quot;);
-	}
-}</stringProp>
-              </BeanShellPostProcessor>
-              <hashTree/>
-            </hashTree>
-          </hashTree>
         </hashTree>
         <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="UA-4 - Auto Refreshing Website" enabled="false">
           <intProp name="ThroughputController.style">1</intProp>
@@ -1952,7 +1596,7 @@ vars.put(&quot;nextLink&quot;,vars.get(&quot;nextLink&quot;).replace(&quot;/$&qu
             <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Override Proxy Settings" enabled="true">
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="script">int rand = Integer.parseInt(vars.get(&quot;randomPercentage&quot;));
 int percDirect = Integer.parseInt(vars.get(&quot;percentageDirectTraffic&quot;));
 
@@ -1971,7 +1615,7 @@ else
             </BeanShellPreProcessor>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -2081,7 +1725,7 @@ else
               </ResponseAssertion>
               <hashTree/>
               <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-                <boolProp name="resetInterpreter">false</boolProp>
+                <boolProp name="resetInterpreter">true</boolProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -2163,7 +1807,7 @@ else
             <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Override Proxy Settings" enabled="true">
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="script">int rand = Integer.parseInt(vars.get(&quot;randomPercentage&quot;));
 int percDirect = Integer.parseInt(vars.get(&quot;percentageDirectTraffic&quot;));
 
@@ -2200,7 +1844,7 @@ else
             </RegexExtractor>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -2261,15 +1905,8 @@ else
               <stringProp name="RegexExtractor.match_number">-1</stringProp>
             </RegexExtractor>
             <hashTree/>
-            <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="true">
-              <boolProp name="displayJMeterProperties">false</boolProp>
-              <boolProp name="displayJMeterVariables">true</boolProp>
-              <boolProp name="displaySamplerProperties">true</boolProp>
-              <boolProp name="displaySystemProperties">false</boolProp>
-            </DebugPostProcessor>
-            <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -2372,7 +2009,7 @@ else
               </ResponseAssertion>
               <hashTree/>
               <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-                <boolProp name="resetInterpreter">false</boolProp>
+                <boolProp name="resetInterpreter">true</boolProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -2431,7 +2068,7 @@ else
           </GaussianRandomTimer>
           <hashTree/>
           <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Pick Random File" enabled="true">
-            <boolProp name="resetInterpreter">false</boolProp>
+            <boolProp name="resetInterpreter">true</boolProp>
             <stringProp name="parameters"></stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="script">import java.util.Random;
@@ -2450,6 +2087,17 @@ vars.put(&quot;randomFilePath&quot;, file.getAbsolutePath());
 props.put(&quot;randomFile&quot;, vars.get(&quot;randomFilePath&quot;));</stringProp>
           </BeanShellPreProcessor>
           <hashTree/>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load URL List" enabled="true">
+            <stringProp name="filename">${__P(randomFile,)}</stringProp>
+            <stringProp name="fileEncoding"></stringProp>
+            <stringProp name="variableNames">baseUrl</stringProp>
+            <stringProp name="delimiter">,</stringProp>
+            <boolProp name="quotedData">false</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <boolProp name="stopThread">false</boolProp>
+            <stringProp name="shareMode">shareMode.all</stringProp>
+          </CSVDataSet>
+          <hashTree/>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Set rand for use in routing choice" enabled="true">
             <stringProp name="maximumValue">99</stringProp>
             <stringProp name="minimumValue">0</stringProp>
@@ -2462,7 +2110,7 @@ props.put(&quot;randomFile&quot;, vars.get(&quot;randomFilePath&quot;));</string
           <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Override Proxy Settings" enabled="true">
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
-            <boolProp name="resetInterpreter">false</boolProp>
+            <boolProp name="resetInterpreter">true</boolProp>
             <stringProp name="script">int rand = Integer.parseInt(vars.get(&quot;randomPercentage&quot;));
 int percDirect = Integer.parseInt(vars.get(&quot;percentageDirectTraffic&quot;));
 
@@ -2479,17 +2127,6 @@ else
 }
 </stringProp>
           </BeanShellPreProcessor>
-          <hashTree/>
-          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load URL List" enabled="true">
-            <stringProp name="filename">${__P(randomFile,)}</stringProp>
-            <stringProp name="fileEncoding"></stringProp>
-            <stringProp name="variableNames">baseUrl</stringProp>
-            <stringProp name="delimiter">,</stringProp>
-            <boolProp name="quotedData">false</boolProp>
-            <boolProp name="recycle">true</boolProp>
-            <boolProp name="stopThread">false</boolProp>
-            <stringProp name="shareMode">shareMode.all</stringProp>
-          </CSVDataSet>
           <hashTree/>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Http Req Sampler - ${baseUrl}" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
@@ -2522,7 +2159,7 @@ else
             </HtmlExtractor>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">int matchTotal = Integer.parseInt(vars.get(&quot;allLinkUrls_matchNr&quot;));
@@ -2554,7 +2191,7 @@ vars.put(&quot;nextLink&quot;,nextLink);</stringProp>
             </BeanShellPostProcessor>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -2572,13 +2209,6 @@ vars.put(&quot;nextLink&quot;,nextLink);</stringProp>
             <ResultAction guiclass="ResultActionGui" testclass="ResultAction" testname="Stop if domain is dead" enabled="true">
               <intProp name="OnError.action">4</intProp>
             </ResultAction>
-            <hashTree/>
-            <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="true">
-              <boolProp name="displayJMeterProperties">false</boolProp>
-              <boolProp name="displayJMeterVariables">true</boolProp>
-              <boolProp name="displaySamplerProperties">true</boolProp>
-              <boolProp name="displaySystemProperties">false</boolProp>
-            </DebugPostProcessor>
             <hashTree/>
           </hashTree>
           <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -2607,62 +2237,6 @@ vars.put(&quot;nextLink&quot;,nextLink);</stringProp>
               <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="true">
-                <boolProp name="displayJMeterProperties">false</boolProp>
-                <boolProp name="displayJMeterVariables">true</boolProp>
-                <boolProp name="displaySamplerProperties">true</boolProp>
-                <boolProp name="displaySystemProperties">false</boolProp>
-              </DebugPostProcessor>
-              <hashTree/>
-              <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Clear relativeLink" enabled="false">
-                <boolProp name="resetInterpreter">false</boolProp>
-                <stringProp name="parameters"></stringProp>
-                <stringProp name="filename"></stringProp>
-                <stringProp name="script">vars.remove(&quot;relativeLink&quot;);
-vars.put(&quot;nextLink&quot;,vars.get(&quot;nextLink&quot;).replace(&quot;/$&quot;,&quot;&quot;));</stringProp>
-              </BeanShellPreProcessor>
-              <hashTree/>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (full http)" enabled="false">
-                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                <stringProp name="RegexExtractor.refname">nextLink</stringProp>
-                <stringProp name="RegexExtractor.regex">&lt;a href=&quot;http://([^&quot;]+)&quot;</stringProp>
-                <stringProp name="RegexExtractor.template">$1$</stringProp>
-                <stringProp name="RegexExtractor.default"></stringProp>
-                <stringProp name="RegexExtractor.match_number">0</stringProp>
-              </RegexExtractor>
-              <hashTree/>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (//)" enabled="false">
-                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                <stringProp name="RegexExtractor.refname">nextLink</stringProp>
-                <stringProp name="RegexExtractor.regex">&lt;a href=&quot;//([^&quot;]+)&quot;</stringProp>
-                <stringProp name="RegexExtractor.template">$1$</stringProp>
-                <stringProp name="RegexExtractor.default"></stringProp>
-                <stringProp name="RegexExtractor.match_number">0</stringProp>
-              </RegexExtractor>
-              <hashTree/>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (relative)" enabled="false">
-                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                <stringProp name="RegexExtractor.refname">relativeLink</stringProp>
-                <stringProp name="RegexExtractor.regex">&lt;a href=&quot;/([^&quot;/]+)&quot;</stringProp>
-                <stringProp name="RegexExtractor.template">$1$</stringProp>
-                <stringProp name="RegexExtractor.default"></stringProp>
-                <stringProp name="RegexExtractor.match_number">0</stringProp>
-              </RegexExtractor>
-              <hashTree/>
-              <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Parse relativeLink" enabled="false">
-                <stringProp name="filename"></stringProp>
-                <stringProp name="parameters"></stringProp>
-                <boolProp name="resetInterpreter">false</boolProp>
-                <stringProp name="script">if(vars.getObject(&quot;nextLink&quot;) == null){
-	if(vars.getObject(&quot;relativeLink&quot;) != null){
-		vars.put(&quot;nextLink&quot;,vars.get(&quot;baseUrl&quot;) + &quot;/&quot; + vars.get(&quot;relativeLink&quot;));
-	}
-	else {
-		vars.put(&quot;nextLink&quot;,vars.get(&quot;baseUrl&quot;));
-	}
-}</stringProp>
-              </BeanShellPostProcessor>
-              <hashTree/>
               <HtmlExtractor guiclass="HtmlExtractorGui" testclass="HtmlExtractor" testname="CSS/JQuery Extractor" enabled="true">
                 <stringProp name="HtmlExtractor.refname">allLinkUrls</stringProp>
                 <stringProp name="HtmlExtractor.expr">a</stringProp>
@@ -2673,7 +2247,7 @@ vars.put(&quot;nextLink&quot;,vars.get(&quot;nextLink&quot;).replace(&quot;/$&qu
               </HtmlExtractor>
               <hashTree/>
               <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
-                <boolProp name="resetInterpreter">false</boolProp>
+                <boolProp name="resetInterpreter">true</boolProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="script">int matchTotal = Integer.parseInt(vars.get(&quot;allLinkUrls_matchNr&quot;));
@@ -2705,60 +2279,6 @@ nextLink=nextLink.replaceFirst(&quot;http://&quot;,&quot;&quot;);
 vars.put(&quot;nextLink&quot;,nextLink);</stringProp>
               </BeanShellPostProcessor>
               <hashTree/>
-              <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="false">
-                <boolProp name="resetInterpreter">false</boolProp>
-                <stringProp name="parameters"></stringProp>
-                <stringProp name="filename"></stringProp>
-                <stringProp name="script">int matchTotal = Integer.parseInt(vars.get(&quot;allLinkUrls_matchNr&quot;));
-String nextLink = vars.get(&quot;baseUrl&quot;);
-if(matchTotal &gt; 0) {
-	boolean done = false;
-
-
-log.info(prev.getUrlAsString().toLowerCase());
-log.info(nextLink.toLowerCase());
-	
-	while(done != true)
-	{
-		int random = Math.random() * matchTotal;
-		String urlSnippet=vars.get(&quot;allLinkUrls_&quot; + random);
-		log.info(&quot;trying... &quot; + urlSnippet);
-		if(urlSnippet.startsWith(&quot;http://&quot;)){
-			nextLink = urlSnippet;
-			done = true;
-		}
-		else if(urlSnippet.startsWith(&quot;//&quot;)){
-			nextLink = &quot;http:&quot; + urlSnippet;
-			done = true;
-		}
-		else if(urlSnippet.startsWith(&quot;/&quot;)){
-			nextLink = nextLink + urlSnippet;
-			done = true;
-		}
-	}
-}
-nextLink=nextLink.replace(&quot;/$&quot;,&quot;&quot;);
-vars.put(&quot;nextLink&quot;,nextLink);
-log.info(&quot;nextLink set to :&quot; + vars.get(&quot;nextLink&quot;));</stringProp>
-              </BeanShellPostProcessor>
-              <hashTree/>
-              <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Check if prev = next" enabled="false">
-                <stringProp name="filename"></stringProp>
-                <stringProp name="parameters"></stringProp>
-                <boolProp name="resetInterpreter">false</boolProp>
-                <stringProp name="script">if(prev.getUrlAsString().toLowerCase().contains(vars.get(&quot;nextLink&quot;).toLowerCase())){
-	vars.put(&quot;nextLink&quot;,vars.get(&quot;baseUrl&quot;));
-}
-</stringProp>
-              </BeanShellPostProcessor>
-              <hashTree/>
-              <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Reset to BaseUrl if fail" enabled="false">
-                <stringProp name="filename"></stringProp>
-                <stringProp name="parameters"></stringProp>
-                <boolProp name="resetInterpreter">false</boolProp>
-                <stringProp name="script"></stringProp>
-              </BeanShellPostProcessor>
-              <hashTree/>
               <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
                 <collectionProp name="Asserion.test_strings">
                   <stringProp name="-1239234756">403|20[0-9]|30[0-9]</stringProp>
@@ -2769,7 +2289,7 @@ log.info(&quot;nextLink set to :&quot; + vars.get(&quot;nextLink&quot;));</strin
               </ResponseAssertion>
               <hashTree/>
               <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-                <boolProp name="resetInterpreter">false</boolProp>
+                <boolProp name="resetInterpreter">true</boolProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -2929,7 +2449,7 @@ else
             </ResponseAssertion>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -2986,7 +2506,7 @@ else
           <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Override Proxy Settings" enabled="true">
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
-            <boolProp name="resetInterpreter">false</boolProp>
+            <boolProp name="resetInterpreter">true</boolProp>
             <stringProp name="script">int rand = Integer.parseInt(vars.get(&quot;randomPercentage&quot;));
 int percDirect = Integer.parseInt(vars.get(&quot;percentageDirectTraffic&quot;));
 
@@ -3005,7 +2525,7 @@ else
           </BeanShellPreProcessor>
           <hashTree/>
           <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Pick Random File" enabled="true">
-            <boolProp name="resetInterpreter">false</boolProp>
+            <boolProp name="resetInterpreter">true</boolProp>
             <stringProp name="parameters"></stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="script">import java.util.Random;
@@ -3064,7 +2584,7 @@ vars.put(&quot;randomFilePath&quot;, file.getAbsolutePath());</stringProp>
             </ResponseAssertion>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -3131,7 +2651,7 @@ vars.put(&quot;randomFilePath&quot;, file.getAbsolutePath());</stringProp>
             <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Override Proxy Settings" enabled="true">
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="script">int rand = Integer.parseInt(vars.get(&quot;randomPercentage&quot;));
 int percDirect = Integer.parseInt(vars.get(&quot;percentageDirectTraffic&quot;));
 
@@ -3159,7 +2679,7 @@ else
             </RegexExtractor>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -3207,7 +2727,7 @@ else
             </ResponseAssertion>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -3274,7 +2794,7 @@ else
             <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Override Proxy Settings" enabled="true">
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="script">int rand = Integer.parseInt(vars.get(&quot;randomPercentage&quot;));
 int percDirect = Integer.parseInt(vars.get(&quot;percentageDirectTraffic&quot;));
 
@@ -3301,15 +2821,8 @@ else
               <stringProp name="RegexExtractor.match_number">0</stringProp>
             </RegexExtractor>
             <hashTree/>
-            <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="true">
-              <boolProp name="displayJMeterProperties">false</boolProp>
-              <boolProp name="displayJMeterVariables">true</boolProp>
-              <boolProp name="displaySamplerProperties">true</boolProp>
-              <boolProp name="displaySystemProperties">false</boolProp>
-            </DebugPostProcessor>
-            <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
@@ -3357,7 +2870,7 @@ else
             </ResponseAssertion>
             <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Sampler Renamer" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
+              <boolProp name="resetInterpreter">true</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="script">if(vars.get(&quot;debugMode&quot;) != &quot;true&quot;) {
