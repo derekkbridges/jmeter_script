@@ -1744,7 +1744,7 @@ else
             </hashTree>
           </hashTree>
         </hashTree>
-        <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="UA-5 - HLS Streaming Media" enabled="false">
+        <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="UA-5 - HLS Streaming Media" enabled="true">
           <intProp name="ThroughputController.style">0</intProp>
           <boolProp name="ThroughputController.perThread">true</boolProp>
           <intProp name="ThroughputController.maxThroughput">1</intProp>
@@ -2031,7 +2031,7 @@ else
             </hashTree>
           </hashTree>
         </hashTree>
-        <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="UA-6 - Browse Questionable Content" enabled="true">
+        <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="UA-6 - Browse Questionable Content" enabled="false">
           <intProp name="ThroughputController.style">1</intProp>
           <boolProp name="ThroughputController.perThread">true</boolProp>
           <intProp name="ThroughputController.maxThroughput">1</intProp>
@@ -2044,10 +2044,10 @@ else
         <hashTree>
           <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Set Path of Questionable files" enabled="true">
             <collectionProp name="Arguments.arguments">
-              <elementProp name="questionableFilesFolder" elementType="Argument">
-                <stringProp name="Argument.name">questionableFilesFolder</stringProp>
-                <stringProp name="Argument.value">${dataFilePath}questionable_Files\</stringProp>
-                <stringProp name="Argument.desc">Points to the folder containing files with urls for each questiontable type</stringProp>
+              <elementProp name="questionableSitesFile" elementType="Argument">
+                <stringProp name="Argument.name">questionableSitesFile</stringProp>
+                <stringProp name="Argument.value">${dataFilePath}questionable_Files\WebSec_Test_Data.csv</stringProp>
+                <stringProp name="Argument.desc">Points to the file containing urls for each questiontable type</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -2067,30 +2067,10 @@ else
             <stringProp name="RandomTimer.range">${thinkTimePlusMinus}</stringProp>
           </GaussianRandomTimer>
           <hashTree/>
-          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Pick Random File" enabled="true">
-            <boolProp name="resetInterpreter">true</boolProp>
-            <stringProp name="parameters"></stringProp>
-            <stringProp name="filename"></stringProp>
-            <stringProp name="script">import java.util.Random;
-
-File folder = new File(vars.get(&quot;questionableFilesFolder&quot;));
-File[] files = folder.listFiles();
-
-for(file:files){
-	log.info(file.getAbsolutePath());
-}
-
-int idx = new Random().nextInt(files.length);
-File file = (files[idx]);
-
-vars.put(&quot;randomFilePath&quot;, file.getAbsolutePath());
-props.put(&quot;randomFile&quot;, vars.get(&quot;randomFilePath&quot;));</stringProp>
-          </BeanShellPreProcessor>
-          <hashTree/>
           <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load URL List" enabled="true">
-            <stringProp name="filename">${__P(randomFile,)}</stringProp>
+            <stringProp name="filename">${questionableSitesFile}</stringProp>
             <stringProp name="fileEncoding"></stringProp>
-            <stringProp name="variableNames">baseUrl</stringProp>
+            <stringProp name="variableNames">category,baseUrl</stringProp>
             <stringProp name="delimiter">,</stringProp>
             <boolProp name="quotedData">false</boolProp>
             <boolProp name="recycle">true</boolProp>
@@ -2198,10 +2178,10 @@ vars.put(&quot;nextLink&quot;,nextLink);</stringProp>
 	SampleResult = prev;
 	if(prev.getResponseCode().equals(&quot;403&quot;))
 	{
-		SampleResult.setSampleLabel(&quot;[&quot; + vars.get(&quot;proxyOrDirectFlag&quot;) + &quot;]_UA-6_http-BLOCKED&quot;);
+		SampleResult.setSampleLabel(&quot;[&quot; + vars.get(&quot;proxyOrDirectFlag&quot;) + &quot;]&quot;+vars.get(&quot;category&quot;)+&quot;_UA-6_http-BLOCKED&quot;);
 	}
 	else {
-		SampleResult.setSampleLabel(&quot;[&quot; + vars.get(&quot;proxyOrDirectFlag&quot;) + &quot;]_UA-6_http&quot;);
+		SampleResult.setSampleLabel(&quot;[&quot; + vars.get(&quot;proxyOrDirectFlag&quot;) + &quot;]&quot;+vars.get(&quot;category&quot;)+&quot;_UA-6_http&quot;);
 	}
 }</stringProp>
             </BeanShellPostProcessor>
@@ -2296,10 +2276,10 @@ vars.put(&quot;nextLink&quot;,nextLink);</stringProp>
 	SampleResult = prev;
 	if(prev.getResponseCode().equals(&quot;403&quot;))
 	{
-		SampleResult.setSampleLabel(&quot;[&quot; + vars.get(&quot;proxyOrDirectFlag&quot;) + &quot;]_UA-6_http-BLOCKED&quot;);
+		SampleResult.setSampleLabel(&quot;[&quot; + vars.get(&quot;proxyOrDirectFlag&quot;) + &quot;]&quot;+vars.get(&quot;category&quot;)+&quot;_UA-6_http-BLOCKED&quot;);
 	}
 	else {
-		SampleResult.setSampleLabel(&quot;[&quot; + vars.get(&quot;proxyOrDirectFlag&quot;) + &quot;]_UA-6_http&quot;);
+		SampleResult.setSampleLabel(&quot;[&quot; + vars.get(&quot;proxyOrDirectFlag&quot;) + &quot;]&quot;+vars.get(&quot;category&quot;)+&quot;_UA-6_http&quot;);
 	}
 }</stringProp>
               </BeanShellPostProcessor>
